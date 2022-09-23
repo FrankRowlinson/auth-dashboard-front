@@ -13,8 +13,10 @@ function App() {
   const [isLoading, setLoading] = useState(true)
   const [update, setUpdate] = useState(false)
 
-  const updateTable = () => {
-    setTimeout(() => setUpdate(!update), 500)
+  const updateTable = (res) => {
+    if (res.data) {
+      setUpdate(!update)
+    }
   }
 
   useEffect(() => {
