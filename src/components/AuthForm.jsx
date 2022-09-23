@@ -16,7 +16,7 @@ function AuthForm() {
   }
 
   const onSubmit = (data, { resetForm }) => {
-    axios.post(`${process.env.REACT_APP_HOST}login` || "https://frank-rowlinson-app1.herokuapp.com/login", data).then((res) => {
+    axios.post("https://frank-rowlinson-app1.herokuapp.com/login", data).then((res) => {
       if (res.data.hasOwnProperty("error")) {
         alert(res.data.error)
         resetForm({
