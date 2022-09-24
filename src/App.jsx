@@ -11,13 +11,7 @@ function App() {
   const [cookie, , removeCookie] = useCookies()
   const [access, setAccess] = useState(false)
   const [isLoading, setLoading] = useState(true)
-  const [update, setUpdate] = useState(false)
-
-  const updateTable = (res) => {
-    if (res.data) {
-      setUpdate(!update)
-    }
-  }
+  const [users, setUsers] = useState([])
 
   useEffect(() => {
     const fetchData = async (cookie) => {
@@ -26,7 +20,7 @@ function App() {
       setLoading(false)
     }
     fetchData(cookie)
-  }, [cookie, update])
+  }, [cookie, users])
 
   const logout = () => {
     removeCookie("authToken", { path: "/" })
@@ -37,7 +31,7 @@ function App() {
       {isLoading ? (
         <Load />
       ) : access ? (
-        <Dashboard logout={logout} updateTable={updateTable} update={update} />
+        <Dashboard users={users} setUsers={setUsers} logout={logout}/>
       ) : (
         <Auth />
       )}
